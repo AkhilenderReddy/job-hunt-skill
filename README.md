@@ -13,7 +13,7 @@ tracker) lives in a separate local workspace folder, by default `Documents/JobHu
 Claude Code (any machine):
 
 ```bash
-git clone https://github.com/<your-user>/job-hunt-skill.git ~/.claude/skills/job-hunt
+git clone https://github.com/AkhilenderReddy/job-hunt-skill.git ~/.claude/skills/job-hunt
 ```
 
 To update later: `git -C ~/.claude/skills/job-hunt pull`.
