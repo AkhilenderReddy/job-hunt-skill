@@ -1,0 +1,58 @@
+{
+  "defaults": {
+    "roles": "all",
+    "fresh_days": 1,
+    "apply_mode": "apply_all",
+    "how_many": "all that pass",
+    "consents": "accept required consents and submit without asking"
+  },
+  "max_required_years": 3,
+  "exclude_title_words": [
+    "senior",
+    "sr",
+    "staff",
+    "principal",
+    "lead",
+    "manager",
+    "director",
+    "head",
+    "vp",
+    "vice president",
+    "avp",
+    "architect",
+    "intern",
+    "internship"
+  ],
+  "roles": {
+    "AI Engineer": [
+      "AI Engineer",
+      "Generative AI Engineer",
+      "LLM Engineer",
+      "Agentic AI Engineer",
+      "Applied AI Engineer"
+    ],
+    "Forward Deployed Engineer": [
+      "Forward Deployed Engineer",
+      "Solutions Engineer AI",
+      "AI Deployment Engineer"
+    ],
+    "AI Security Engineer": [
+      "AI Security Engineer",
+      "AI Red Team",
+      "Security Engineer AI"
+    ],
+    "Software Engineer": [
+      "Software Engineer",
+      "Backend Engineer",
+      "Full Stack Engineer"
+    ],
+    "DevOps Engineer": [
+      "DevOps Engineer",
+      "Platform Engineer",
+      "MLOps Engineer"
+    ]
+  },
+  "location_rule": "Describe where the candidate can work, and what to reject.",
+  "employment": "Full-time or contract. No unpaid roles or internships.",
+  "exclude_companies": []
+}
