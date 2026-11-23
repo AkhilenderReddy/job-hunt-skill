@@ -211,6 +211,10 @@ Before ending a run, write down what it taught:
 | A preference about how runs should go (roles, mode, limits) | `config.json` `defaults` |
 | A correction to the method itself, or a new idea the user asks for | this skill's own `SKILL.md` or `references/` files |
 
+This skill folder is a git repo (private: github.com/AkhilenderReddy/job-hunt-skill). After
+changing any skill file, commit it with a one-line message and push, so every machine and agent can
+pull the improvement. Personal data never goes in this repo; it stays in the workspace.
+
 Read `site_notes.md` before applying on a site it mentions. When the user suggests an improvement to
 the process, change the skill files in the same turn and say what changed; do not just apply it to
 the current run.
