@@ -69,7 +69,10 @@ Subagents take `model` on the Agent call. When the main session runs on Opus or 
 all lost or swapped tabs, because the Chrome extension gives a session one shared tab group and
 any agent can reset it. Run browser agents one after another. Parallelism goes into the non-browser
 steps (reading postings, tailoring resumes), which can run while an applier works. If a future
-setup gives each agent its own browser, raise this to 3.
+setup gives each agent its own browser, raise this to 3. Keep each browser wave to about 10-12 jobs:
+on 24 Nov 2026 the extension disconnected after ~15 company-site jobs in one Sonnet agent. Before a
+wave that uses Google sign-in or Google Forms, check that Chrome's Google account is the one in
+`answers.md`.
 
 **Escalation.** Haiku goes first. Every job it reports `stuck` (a form it could not get through
 that is not a sign-in or a missing answer) goes in the next wave to a Sonnet agent (`model:
