@@ -104,6 +104,15 @@ employer links, which are the best ones to apply through.
 drops them automatically; never apply to them, even when they arrive by a link the user pastes or
 as a repost under another name, such as "Spore N Sprouts" reposting a Cognizant role.
 
+## Merging the extras
+
+Save Apify's LinkedIn items as `runs/<run>/apify_linkedin.json` (download the dataset with curl from
+`https://api.apify.com/v2/datasets/<id>/items?clean=true&format=json&omit=descriptionHtml`; no token needed)
+and Firecrawl rows worth keeping as `runs/<run>/firecrawl_extra.json`, then run
+`python <skill>/scripts/merge_extra.py <workspace> <run>` before triage. On 24 Nov 2026 one Apify run
+(150 items, all roles in one OR query) cost about $0.07; Firecrawl `jobs_search` stops at 200 credits
+per session, so spend them on the AI roles first.
+
 ## After searching
 
 - Keep the employer or ATS link when the same job also appears on an aggregator.
