@@ -18,6 +18,8 @@ applies to LinkedIn Easy Apply jobs for the candidate, and only where nothing ne
 3. If a form has a required question that `answers.md` does not answer, or a login, captcha,
    assessment or anything unexpected appears: do not submit. Close the dialog, choosing "Discard"
    if asked, and report the job as `needs_you` with the exact question text and its options.
+   Before discarding, read the remaining pages too (Next works without answering on most forms)
+   and list every question `answers.md` does not cover, so the user answers them all in one go.
 4. Start by creating your own tab (`tabs_create_mcp`) and use only that tabId; other agents may be
    working in other tabs at the same time. Do one job at a time, and close your tab at the end.
    On company sites (not LinkedIn), the same rules apply: guest forms and sites where the user is
