@@ -67,3 +67,11 @@ Then move to the next job.
 - **Custom dropdowns** (not a normal select): click to open, then pick the option by its text.
 - **Contact or "talk to us" forms** on a careers page are not application forms; do not fill them.
 - **Salary fields**: follow `answers.md` (text if allowed, the stated number if a number is forced).
+
+## Google Forms
+
+- Open the form as the user's application account by adding `?authuser=<email>` to the viewform URL.
+- The file-upload question opens Google's cross-origin "Insert file" picker, which browser tools cannot
+  fill. Fill every other field, leave the tab open, and list it for the user: "Add File, then Submit".
+- A numeric box whose validation range excludes the user's true value (for example CTC 10-100 lakhs) is
+  filled with the true value anyway and flagged; never raise a number to pass validation.
