@@ -61,7 +61,9 @@ Use the cheapest model that does each step safely. Scripts cost nothing; model t
 | Changing this skill, the run summary, anything unusual | The main session, Opus or Fable | Rare judgement calls |
 
 The main session's model is the user's choice (the model picker); suggest Sonnet for long apply runs.
-Subagents take `model` on the Agent call.
+Subagents take `model` on the Agent call. When the main session runs on Opus or Fable, do not do the
+"main session, Sonnet" steps there: hand them to a subagent with `model: "sonnet"` (briefed with
+`references/apply-agent.md` plus `references/apply.md`), so each step runs on the model in this table.
 
 **One browser agent at a time.** Tried 23 Nov 2026: three agents in parallel, each in its own tab,
 all lost or swapped tabs, because the Chrome extension gives a session one shared tab group and
