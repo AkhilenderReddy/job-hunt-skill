@@ -110,7 +110,8 @@ Prefer the employer's own career page or ATS link over an aggregator link for th
 ATS job URL seen from any source is fed back with `fetch_boards.py add <workspace> <urls>` so that
 company's board is read directly from then on.
 
-Then run `jobhunt.py triage`. It removes duplicates, jobs already in the tracker, titles above the
+Merge Apify and Firecrawl rows with `scripts/merge_extra.py <workspace> <run>` (file names in
+`references/search.md`), then run `linkedin_details.py` to fill LinkedIn descriptions, then `jobhunt.py triage`. It removes duplicates, jobs already in the tracker, titles above the
 user's level, and jobs whose text asks for more years than `config.json` allows.
 
 ## Stage 3: Read, filter, cluster
