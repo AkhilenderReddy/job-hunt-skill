@@ -55,7 +55,7 @@ Use the cheapest model that does each step safely. Scripts cost nothing; model t
 |---|---|---|
 | Search, triage, score, report (`fetch_boards.py`, `linkedin_details.py`, `jobhunt.py`) | No model: plain scripts | Free and fast |
 | Stage 3, reading postings | Subagents with `model: "haiku"`, about 20 postings each, in parallel | Simple extraction; the scripts re-check years afterwards |
-| Stage 5, tailoring resumes | The main session, ideally Sonnet | Must stay truthful; done once per cluster, not per job |
+| Stage 5, tailoring resumes | Sonnet subagent builds; the main session (Opus/Fable) reviews | Must stay truthful; once per cluster per run, from that day's postings |
 | Stage 6, Easy Apply jobs whose every question is already in `answers.md` | Subagent with `model: "haiku"`, briefed with `references/apply-agent.md` | Repetitive clicking with no judgement calls; anything new stops and comes back |
 | Stage 6, everything else (company sites, new questions, multi-page ATS forms) | The main session, Sonnet | Fewer mis-clicks and wrong answers under the user's name |
 | Changing this skill, the run summary, anything unusual | The main session, Opus or Fable | Rare judgement calls |
@@ -158,6 +158,16 @@ which is the opposite of what this skill is for. Skills the job wants and the us
 gap report instead.
 
 Jobs in the same cluster with near-identical skills can share one tailored resume.
+
+**Build, then review (every run, never reuse yesterday's PDFs).** A Sonnet subagent builds one resume per
+cluster from that cluster's postings in today's `jobs.json`: it counts the required skills, puts the
+ones the user has first in Skills using the postings' own spelling, and works approaches the user
+really has (distributed systems, client-facing delivery) into the Summary. The main session (Opus or
+Fable) then reviews each JSON before the PDF is used: every frequently asked skill that is in
+`skills.json` must be visible in Skills or the Summary; nothing may appear that is not in
+`master_resume.json`; one page. It fixes what fails and rebuilds. When a top gap skill keeps
+appearing, ask the user once whether they have really used it; a yes goes into `skills.json` and
+`master_resume.json`, a no stays in the gap report. The score only rises through true skills.
 
 ## Stage 6: Apply
 

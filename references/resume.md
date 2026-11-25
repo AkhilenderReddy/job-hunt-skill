@@ -13,7 +13,9 @@ rebuild; do not shrink the font.
 ## What to change per job
 
 1. **Summary** (2 to 3 lines): who the user is in this job's terms, using the posting's own words
-   for things the user has really done.
+   for things the user has really done. Approaches and system-level experience the postings ask for
+   (distributed systems, client-facing delivery, production LLM systems) belong here, not in Skills,
+   which lists tech stacks and frameworks.
 2. **Skills**: regroup and reorder so the posting's required skills come first. Use the posting's
    spelling of a skill the user has ("vector database" next to Qdrant, "REST APIs" for FastAPI
    work). Leave out skills irrelevant to this job to save space.
