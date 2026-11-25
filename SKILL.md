@@ -165,7 +165,15 @@ ones the user has first in Skills using the postings' own spelling, and works ap
 really has (distributed systems, client-facing delivery) into the Summary. The main session (Opus or
 Fable) then reviews each JSON before the PDF is used: every frequently asked skill that is in
 `skills.json` must be visible in Skills or the Summary; nothing may appear that is not in
-`master_resume.json`; one page. It fixes what fails and rebuilds. When a top gap skill keeps
+`master_resume.json`; one page. It fixes what fails and rebuilds.
+
+How the review runs, cheaply: (1) the Sonnet subagent writes all cluster JSONs in one go; (2) the
+main session reviews them in a single pass against that cluster's postings, checking visible skills,
+a clear Summary (approaches such as distributed systems included), the strongest bullets first,
+nothing beyond the master, one page; (3) it edits the JSON itself, with no round trip back to
+Sonnet, and rebuilds only the PDFs that changed; (4) any fix that would help every future resume
+(a better master bullet, a clearer skills grouping, a rule) goes into `master_resume.json` or
+`references/resume.md`, so the next run starts from the improved version. When a top gap skill keeps
 appearing, ask the user once whether they have really used it; a yes goes into `skills.json` and
 `master_resume.json`, a no stays in the gap report. The score only rises through true skills.
 
