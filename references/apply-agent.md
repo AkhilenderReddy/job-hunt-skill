@@ -31,7 +31,8 @@ applies to LinkedIn Easy Apply jobs for the candidate, and only where nothing ne
    day goes in only when required). Location pickers: if several can be chosen, select every
    preferred location listed in `answers.md` in its order, not just the first.
 6. "Currently based in / located in <city>" asks where the candidate lives now (profile.json
-   `current_city`), not whether they would relocate. Answer it from `current_city` only.
+   `current_city`), not whether they would relocate. Answer it from `current_city` only; a home
+   town (`home_city`) is a different thing and is used only where a form asks for it.
 
 ## Steps for each job
 
