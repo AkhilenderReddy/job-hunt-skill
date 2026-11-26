@@ -12,6 +12,14 @@ import json, re, sys
 from pathlib import Path
 
 
+def epoch_day(value):
+  try:
+    from datetime import datetime, timezone
+    return datetime.fromtimestamp(int(value) / 1000, tz=timezone.utc).strftime("%Y-%m-%d")
+  except (TypeError, ValueError):
+    return str(value or "")[:10]
+
+
 def key(url):
   m = re.search(r"linkedin\.com/jobs/view/(?:[^/]*-)?(\d+)", url or "")
   return "li:" + m.group(1) if m else (url or "").split("?")[0].rstrip("/").lower()
@@ -34,13 +42,16 @@ def main(workspace, run):
   naukri = folder / "apify_naukri.json"
   if naukri.exists():
     for r in json.loads(naukri.read_text(encoding="utf-8")):
-      url = r.get("jdURL") or r.get("url") or r.get("jobUrl") or ""
-      if url and url.startswith("/"):
-        url = "https://www.naukri.com" + url
-      rows.append({"title": r.get("title") or r.get("jobTitle"), "company": r.get("companyName") or r.get("company"),
-                   "location": r.get("location") or ", ".join(r.get("locations") or []) if isinstance(r.get("locations"), list) else (r.get("location") or ""),
-                   "url": url, "source": "apify-naukri", "posted": str(r.get("createdDate") or r.get("postedDate") or "")[:10],
-                   "experience": r.get("experience") or r.get("experienceText"), "description": str(r.get("jobDescription") or r.get("description") or "")[:7000]})
+      comp = r.get("company") or {}
+      exp = r.get("experience") or {}
+      desc = r.get("description") or {}
+      locs = r.get("locations") or []
+      rows.append({"title": r.get("title"), "company": comp.get("name") if isinstance(comp, dict) else comp,
+                   "location": ", ".join(l.get("label", str(l)) if isinstance(l, dict) else str(l) for l in locs) if isinstance(locs, list) else str(locs),
+                   "url": r.get("url") or "", "source": "apify-naukri", "posted": epoch_day(r.get("createdDate")),
+                   "naukri_company_apply": str(r.get("companyApplyJob")).lower() == "true",
+                   "min_years_listed": exp.get("minimum") if isinstance(exp, dict) else None,
+                   "description": str(desc.get("full") if isinstance(desc, dict) else desc or "")[:7000]})
   extra = folder / "firecrawl_extra.json"
   if extra.exists():
     rows += json.loads(extra.read_text(encoding="utf-8"))
