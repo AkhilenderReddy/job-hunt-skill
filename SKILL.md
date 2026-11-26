@@ -101,6 +101,10 @@ Follow `references/wellfound-instahyre.md`: Apify searches both (no model); Inst
 daily and Wellfound profile check weekly (Haiku); Wellfound notes in the approved YC style (Sonnet,
 one batch); applying and Instahyre invites in a Haiku wave.
 
+**Profiles before applying.** On any portal with a candidate profile (Naukri, YC, Wellfound,
+Instahyre, Cutshort...), the profile must be checked and current (role, current employer, notice,
+CTC, skills, resume) before the first application from it, because employers see that profile.
+
 ## Stage 1: Settings (usually no questions)
 
 `config.json` holds `defaults` (roles, freshness, apply mode, how many). When they are set and the

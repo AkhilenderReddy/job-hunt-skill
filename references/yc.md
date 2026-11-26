@@ -1,5 +1,9 @@
 # YC / Work at a Startup flow (daily, low volume, high value)
 
+**Limit: 5 applications per week** (WaaS shows "You've reached your limit of 5 applications per week").
+Rank the week's YC candidates by fit and send only the best 5; queue the rest for the next week.
+Record sends in `state/yc.json` (`week_of`, `sent`).
+
 Every Apply on ycombinator.com/jobs goes to Work at a Startup (WaaS): one YC account and one profile,
 then one click plus an optional short note to the founder per job. Most YC roles are US-only or
 "Remote (US)", so few fit an India-based candidate on a given day; checking is cheap, so check daily.
