@@ -100,18 +100,12 @@ employer links, which are the best ones to apply through.
 
 ## Companies the user never applies to
 
-`config.json` `exclude_companies` (currently Wipro, Infosys, TCS, Cognizant, HCLTech). `jobhunt.py triage`
-drops them automatically; never apply to them, even when they arrive by a link the user pastes or
-as a repost under another name, such as "Spore N Sprouts" reposting a Cognizant role.
-
-## Merging the extras
-
-Save Apify's LinkedIn items as `runs/<run>/apify_linkedin.json` (download the dataset with curl from
-`https://api.apify.com/v2/datasets/<id>/items?clean=true&format=json&omit=descriptionHtml`; no token needed)
-and Firecrawl rows worth keeping as `runs/<run>/firecrawl_extra.json`, then run
-`python <skill>/scripts/merge_extra.py <workspace> <run>` before triage. On 24 Nov 2026 one Apify run
-(150 items, all roles in one OR query) cost about $0.07; Firecrawl `jobs_search` stops at 200 credits
-per session, so spend them on the AI roles first.
+`config.json` `exclude_companies` (names, matched as substrings) plus `exclude_company_rule` (a
+category in the user's words, such as "Indian IT services companies and the Mahindra group").
+`jobhunt.py triage` drops the named ones; while reading postings (Stage 3) and before every apply
+wave, also drop any employer that falls in the rule's category, and add its name to
+`exclude_companies` so triage catches it next time. Never apply to them, even when they arrive by a
+link the user pastes or as a repost under another name (a staffing firm reposting their roles).
 
 ## After searching
 
