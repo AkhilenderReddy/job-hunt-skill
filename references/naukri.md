@@ -31,7 +31,10 @@ applying; searching costs no model time.
 - "Apply" (Naukri apply) may open a "recruiter questions" chat drawer on the right; answer each from
   `answers.md` (numbers only in numeric boxes; CTC in lakhs). A question not covered: close the
   drawer without submitting and report `needs_you` with the exact text and options.
-- "Apply on company site": report `not_naukri_apply` with the URL; the coordinator routes it.
+- "Apply on company site": clicking it makes Naukri log an application at once. So before clicking,
+  check the employer is allowed (never-apply list and the services-company rule; small Naukri
+  advertisers are often IT services firms: check their website's About page). Then report
+  `not_naukri_apply` with the URL, or apply if the site is a simple guest form.
 - Success shows "Applied" / "You have successfully applied". Confirm before reporting `applied`.
 - Naukri limits daily applies (around 50 is commonly reported). If a limit message appears, stop the
   wave and report it.
