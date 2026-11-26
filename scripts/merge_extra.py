@@ -31,6 +31,16 @@ def main(workspace, run):
                    "source": "apify-linkedin", "posted": (r.get("postedDate") or "")[:10],
                    "seniority": r.get("experienceLevel"), "employment": r.get("contractType"),
                    "applicants": r.get("applicationsCount"), "description": (r.get("description") or "")[:7000]})
+  naukri = folder / "apify_naukri.json"
+  if naukri.exists():
+    for r in json.loads(naukri.read_text(encoding="utf-8")):
+      url = r.get("jdURL") or r.get("url") or r.get("jobUrl") or ""
+      if url and url.startswith("/"):
+        url = "https://www.naukri.com" + url
+      rows.append({"title": r.get("title") or r.get("jobTitle"), "company": r.get("companyName") or r.get("company"),
+                   "location": r.get("location") or ", ".join(r.get("locations") or []) if isinstance(r.get("locations"), list) else (r.get("location") or ""),
+                   "url": url, "source": "apify-naukri", "posted": str(r.get("createdDate") or r.get("postedDate") or "")[:10],
+                   "experience": r.get("experience") or r.get("experienceText"), "description": str(r.get("jobDescription") or r.get("description") or "")[:7000]})
   extra = folder / "firecrawl_extra.json"
   if extra.exists():
     rows += json.loads(extra.read_text(encoding="utf-8"))

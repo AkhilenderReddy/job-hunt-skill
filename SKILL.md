@@ -54,6 +54,7 @@ Use the cheapest model that does each step safely. Scripts cost nothing; model t
 | Step | Runs on | Why |
 |---|---|---|
 | Search, triage, score, report (`fetch_boards.py`, `linkedin_details.py`, `jobhunt.py`) | No model: plain scripts | Free and fast |
+| Naukri profile refresh (once a day) and Naukri's own Apply | Subagent with `model: "haiku"` | Fixed routine; new questions stop and come back |
 | Stage 3, reading postings | Subagents with `model: "haiku"`, about 20 postings each, in parallel | Simple extraction; the scripts re-check years afterwards |
 | Stage 5, tailoring resumes | Sonnet subagent builds; the main session (Opus/Fable) reviews | Must stay truthful; once per cluster per run, from that day's postings |
 | Stage 6, class A forms (LinkedIn Easy Apply, Greenhouse, Lever, Ashby, Workable, SmartRecruiters, Recruitee, Breezy, JazzHR, Teamtailor, Personio, BambooHR) and Google Forms filling | Subagent with `model: "haiku"`, briefed with `references/apply-agent.md` | Standard single guest forms; anything new stops and comes back |
@@ -79,6 +80,12 @@ wave that uses Google sign-in or Google Forms, check that Chrome's Google accoun
 that is not a sign-in or a missing answer) goes in the next wave to a Sonnet agent (`model:
 "sonnet"`) with Haiku's note. Jobs that need the user (sign-in, account, captcha, a new question)
 are told to the user as soon as each wave ends, grouped by site, while the other agents carry on.
+
+## Naukri (every run)
+
+Follow `references/naukri.md`: refresh the Naukri profile once per day (Haiku, first browser step),
+search Naukri through Apify (no model), merge those jobs into the run, and apply in a Naukri Haiku
+wave. A login page is a blocker for the user, never a password entry.
 
 ## Stage 1: Settings (usually no questions)
 
