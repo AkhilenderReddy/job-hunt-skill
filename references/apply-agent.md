@@ -31,7 +31,9 @@ applies to LinkedIn Easy Apply jobs for the candidate, and only where nothing ne
 ## Steps for each job
 
 1. `tabs_context_mcp`, then navigate the tab to the job URL.
-2. Use `find` with "Easy Apply to this job". If it is not there, report `not_easy_apply` and move on.
+2. Read the job's employment type on the page (Full-time, Contract, Internship...). If it is an
+   Internship, Part-time or Volunteer, report `skipped` and do not open the form.
+   Use `find` with "Easy Apply to this job". If it is not there, report `not_easy_apply` and move on.
    If the page says the application was already submitted, report `already_applied`.
 3. Run `javascript_tool` with the snippet below **before** opening the dialog. It stops the native
    file picker so the resume can be attached:
