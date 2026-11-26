@@ -79,7 +79,8 @@ def main(workspace, run):
                    "url": first(r, "url", "jobUrl", "applyUrl", "link"), "source": src,
                    "posted": str(first(r, "postedDate", "datePosted", "postedAt", "createdAt"))[:10],
                    "remote": first(r, "remote", "isRemote", "remoteType"),
-                   "experience": first(r, "experience", "experienceRange", "minExperience"),
+                   "experience": first(r, "yearsExperienceMin", "experience", "experienceRange", "minExperience"),
+                   "accepted_remote": first(r, "acceptedRemoteLocations"),
                    "description": str(first(r, "description", "jobDescription", "descriptionText"))[:7000]})
   extra = folder / "firecrawl_extra.json"
   if extra.exists():
