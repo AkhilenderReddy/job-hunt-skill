@@ -95,6 +95,12 @@ keep India and worldwide-remote roles within the experience limit, have Sonnet w
 notes in one batch, and apply on Work at a Startup in a small Haiku wave. Weekly, check the WaaS
 profile is set to actively looking.
 
+## Wellfound and Instahyre (every run)
+
+Follow `references/wellfound-instahyre.md`: Apify searches both (no model); Instahyre profile refresh
+daily and Wellfound profile check weekly (Haiku); Wellfound notes in the approved YC style (Sonnet,
+one batch); applying and Instahyre invites in a Haiku wave.
+
 ## Stage 1: Settings (usually no questions)
 
 `config.json` holds `defaults` (roles, freshness, apply mode, how many). When they are set and the

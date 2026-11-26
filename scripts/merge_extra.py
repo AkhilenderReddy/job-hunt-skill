@@ -60,6 +60,27 @@ def main(workspace, run):
                    "source": "yc", "posted": r.get("createdAt") or "", "yc_batch": r.get("company_batch"),
                    "yc_min_experience": r.get("minExperience"), "visa": r.get("visa"), "salary": r.get("salaryRange"),
                    "remote": r.get("remote"), "remote_countries": r.get("remote_countries"), "description": ""})
+  def first(r, *keys):
+    for k in keys:
+      v = r
+      for part in k.split("."):
+        v = v.get(part) if isinstance(v, dict) else None
+      if v:
+        return v
+    return ""
+  for name, src in (("apify_wellfound.json", "wellfound"), ("apify_instahyre.json", "instahyre")):
+    f = folder / name
+    if not f.exists():
+      continue
+    for r in json.loads(f.read_text(encoding="utf-8")):
+      loc = first(r, "location", "locations", "jobLocation", "city")
+      rows.append({"title": first(r, "title", "jobTitle", "role"), "company": first(r, "companyName", "company.name", "company", "employer"),
+                   "location": ", ".join(map(str, loc)) if isinstance(loc, list) else str(loc),
+                   "url": first(r, "url", "jobUrl", "applyUrl", "link"), "source": src,
+                   "posted": str(first(r, "postedDate", "datePosted", "postedAt", "createdAt"))[:10],
+                   "remote": first(r, "remote", "isRemote", "remoteType"),
+                   "experience": first(r, "experience", "experienceRange", "minExperience"),
+                   "description": str(first(r, "description", "jobDescription", "descriptionText"))[:7000]})
   extra = folder / "firecrawl_extra.json"
   if extra.exists():
     rows += json.loads(extra.read_text(encoding="utf-8"))
