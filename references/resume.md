@@ -25,6 +25,13 @@ rebuild; do not shrink the font.
 4. **Projects and achievements**: keep those that support this cluster; drop the rest if space is
    short.
 
+## Lessons from reviews
+
+- The Summary must not tie a tool or cloud to a project unless the master bullet does ("built X on
+  AWS" only when the X bullet says AWS). Skills the user confirmed but no bullet shows go in as
+  "hands-on with ...", never "running production ... on ...".
+- A bullet that refers back ("Deployed ... the tool") stays directly after the bullet it refers to.
+
 ## What never changes
 
 Employers, titles, dates, education, numbers, and the set of skills. If the posting wants something
