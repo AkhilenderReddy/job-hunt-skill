@@ -52,6 +52,14 @@ def main(workspace, run):
                    "naukri_company_apply": str(r.get("companyApplyJob")).lower() == "true",
                    "min_years_listed": exp.get("minimum") if isinstance(exp, dict) else None,
                    "description": str(desc.get("full") if isinstance(desc, dict) else desc or "")[:7000]})
+  yc = folder / "yc_jobs.json"
+  if yc.exists():
+    for r in json.loads(yc.read_text(encoding="utf-8")):
+      rows.append({"title": r.get("title"), "company": r.get("company_name"), "location": r.get("location") or "",
+                   "url": r.get("url") or "", "apply_url": f"https://www.workatastartup.com/jobs/{r.get('id')}",
+                   "source": "yc", "posted": r.get("createdAt") or "", "yc_batch": r.get("company_batch"),
+                   "yc_min_experience": r.get("minExperience"), "visa": r.get("visa"), "salary": r.get("salaryRange"),
+                   "remote": r.get("remote"), "remote_countries": r.get("remote_countries"), "description": ""})
   extra = folder / "firecrawl_extra.json"
   if extra.exists():
     rows += json.loads(extra.read_text(encoding="utf-8"))
