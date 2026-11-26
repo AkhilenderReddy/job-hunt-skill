@@ -75,3 +75,21 @@ Then move to the next job.
   fill. Fill every other field, leave the tab open, and list it for the user: "Add File, then Submit".
 - A numeric box whose validation range excludes the user's true value (for example CTC 10-100 lakhs) is
   filled with the true value anyway and flagged; never raise a number to pass validation.
+
+
+## Form classes and which model applies (cheapest that works)
+
+Classify each job by its apply URL before a wave, then send it to the matching agent. Escalate only
+on failure: Haiku `stuck` -> next Sonnet wave; Sonnet `needs_you`/`needs_signin` -> the user list.
+
+| Class | Sites (apply URL contains) | Why | Model |
+|---|---|---|---|
+| A. Easy, single guest form | LinkedIn Easy Apply; Greenhouse (`greenhouse.io`, `grnh.se`); Lever (`jobs.lever.co`); Ashby (`jobs.ashbyhq.com`); Workable (`apply.workable.com`, `jobs.workable.com`); SmartRecruiters (`jobs.smartrecruiters.com`); Recruitee; Breezy (`breezy.hr`); JazzHR (`applytojob.com`); Teamtailor; Personio (`jobs.personio`); BambooHR (`bamboohr.com`, may show a captcha) | One page or a short wizard, standard fields, normal file input, no account | Haiku |
+| B. Guided or quirky, still no account | Phenom-based career sites (`/global/en/job/`, froze on HPE and Marsh), Eightfold (`eightfold.ai`), Avature (`avature`), PeopleStrong, Darwinbox, Keka, Zoho Recruit (image captcha seen), Oracle Recruiting Cloud (`oraclecloud.com`, may end in an email code), RippleHire, TurboHire, Kula, Hirist/Cutshort, company-built forms | Multi-step, custom widgets, dropdown searches, occasional code screens | Sonnet |
+| C. Fill only, user finishes | Google Forms (`docs.google.com/forms`, `forms.gle`): file picker unreachable; iCIMS (`icims.com`): form in a cross-origin frame | Tools cannot complete the last step | Haiku fills (Google Forms), the user uploads + submits; iCIMS straight to the user |
+| D. Account or login first | Workday (`myworkdayjobs.com`, `myworkdaysite.com`), Taleo (`taleo.net`), SuccessFactors (`sapsf`, `career55`, `jobs.sap.com` sign-in), contactHR (`contacthr.com`), Amazon.jobs, IBM, Accenture, Google Careers (needs the right Google account) | Needs an account, password, MFA or email code | No model: straight to the user's blocker list; an agent continues only after they sign in |
+
+Cheap pre-check for class A: Firecrawl's Alexandria providers (`greenhouse-io jobs/job`,
+`ashbyhq-com jobs/job`, `workable jobs/employer_job`) return a posting's application questions
+without opening a browser. When available, list them first and ask the user any question missing
+from `answers.md` before the wave, so Haiku never stops mid-form.

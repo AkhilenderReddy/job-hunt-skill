@@ -56,8 +56,9 @@ Use the cheapest model that does each step safely. Scripts cost nothing; model t
 | Search, triage, score, report (`fetch_boards.py`, `linkedin_details.py`, `jobhunt.py`) | No model: plain scripts | Free and fast |
 | Stage 3, reading postings | Subagents with `model: "haiku"`, about 20 postings each, in parallel | Simple extraction; the scripts re-check years afterwards |
 | Stage 5, tailoring resumes | Sonnet subagent builds; the main session (Opus/Fable) reviews | Must stay truthful; once per cluster per run, from that day's postings |
-| Stage 6, Easy Apply jobs whose every question is already in `answers.md` | Subagent with `model: "haiku"`, briefed with `references/apply-agent.md` | Repetitive clicking with no judgement calls; anything new stops and comes back |
-| Stage 6, everything else (company sites, new questions, multi-page ATS forms) | The main session, Sonnet | Fewer mis-clicks and wrong answers under the user's name |
+| Stage 6, class A forms (LinkedIn Easy Apply, Greenhouse, Lever, Ashby, Workable, SmartRecruiters, Recruitee, Breezy, JazzHR, Teamtailor, Personio, BambooHR) and Google Forms filling | Subagent with `model: "haiku"`, briefed with `references/apply-agent.md` | Standard single guest forms; anything new stops and comes back |
+| Stage 6, class B forms (Phenom, Eightfold, Avature, Oracle, Zoho, PeopleStrong, custom sites) and Haiku's `stuck` jobs | Subagent with `model: "sonnet"` | Multi-step and quirky widgets need fewer mis-clicks |
+| Stage 6, class D (Workday, Taleo, SuccessFactors, contactHR, account sites) | No model until the user signs in | Nothing an agent can do before that |
 | Changing this skill, the run summary, anything unusual | The main session, Opus or Fable | Rare judgement calls |
 
 The main session's model is the user's choice (the model picker); suggest Sonnet for long apply runs.
@@ -179,7 +180,7 @@ appearing, ask the user once whether they have really used it; a yes goes into `
 
 ## Stage 6: Apply
 
-Split the selected jobs first. On LinkedIn, the job page shows "Easy Apply" or "Apply on company
+Split the selected jobs first by form class (table in `references/apply.md`): A to Haiku, B to Sonnet, C filled by Haiku and finished by the user, D straight to the blocker list. On LinkedIn, the job page shows "Easy Apply" or "Apply on company
 website" (whose link gives the employer URL). Hand the Easy Apply jobs, in batches of about ten, to
 a Haiku subagent briefed with `references/apply-agent.md`. It applies only when every question is
 answered in `answers.md`, and returns the rest with the exact new questions. Ask the user those
