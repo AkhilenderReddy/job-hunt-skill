@@ -16,3 +16,8 @@ then one click plus an optional short note to the founder per job. Most YC roles
 
 The first time, show the user two sample founder notes and save their approval (or edits) as the
 note style in `answers.md`; after that, notes go out without asking unless a company is unusual.
+
+Review notes before sending (main session, one pass): no tool tied to a project unless the master
+bullet does; no "gap admission" that contradicts `answers.md` (e.g. UAT/go-live is a Yes there);
+roles needing US working hours or night shifts are skipped under the `config.json` location rule.
+The same review applies to Wellfound notes.
