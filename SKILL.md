@@ -61,6 +61,7 @@ Use the cheapest model that does each step safely. Scripts cost nothing; model t
 | Stage 6, class A forms (LinkedIn Easy Apply, Greenhouse, Lever, Ashby, Workable, SmartRecruiters, Recruitee, Breezy, JazzHR, Teamtailor, Personio, BambooHR) and Google Forms filling | Subagent with `model: "haiku"`, briefed with `references/apply-agent.md` | Standard single guest forms; anything new stops and comes back |
 | Stage 6, class B forms (Phenom, Eightfold, Avature, Oracle, Zoho, PeopleStrong, custom sites) and Haiku's `stuck` jobs | Subagent with `model: "sonnet"` | Multi-step and quirky widgets need fewer mis-clicks |
 | Stage 6, class D (Workday, Taleo, SuccessFactors, contactHR, account sites) | No model until the user signs in | Nothing an agent can do before that |
+| Recruiter replies on LinkedIn (`/recruiter-reply`) | The main session | Short, interactive replies; the user reviews and sends each one |
 | Changing this skill, the run summary, anything unusual | The main session, Opus or Fable | Rare judgement calls |
 
 The main session's model is the user's choice (the model picker); suggest Sonnet for long apply runs.
@@ -94,6 +95,13 @@ Follow `references/yc.md`: search YC jobs through Firecrawl's `ycombinator-com` 
 keep India and worldwide-remote roles within the experience limit, have Sonnet write short founder
 notes in one batch, and apply on Work at a Startup in a small Haiku wave. Weekly, check the WaaS
 profile is set to actively looking.
+
+## Recruiter replies (on request, `/recruiter-reply <name>`)
+
+When the user asks to reply to a recruiter or hiring assistant on LinkedIn, follow
+`references/recruiter-reply.md`. Claude opens the thread, drafts a human-sounding reply from the
+profile files and types it into the box. The user presses Send; Claude never does. "answer next"
+drafts the reply to the next question in the same thread.
 
 ## Wellfound and Instahyre (every run)
 
