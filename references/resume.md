@@ -32,10 +32,18 @@ rebuild; do not shrink the font.
   "hands-on with ...", never "running production ... on ...".
 - A bullet that refers back ("Deployed ... the tool") stays directly after the bullet it refers to.
 
+## Per-job skills (user's rule, 28 Nov 2026)
+
+The user chose to have each job's missing required skills (e.g. Go, Spring Boot, .NET) listed in the
+Skills section of that job's resume, never in Experience or Projects. Build these with
+`scripts/job_skills_variant.py <workspace> <run> <idx...>` after scoring; it adds the job's
+`missing_required` skills to the matching Skills subsection and points the job at the variant PDF.
+Application questions about those skills stay truthful (years = 0 unless answers.md says otherwise).
+
 ## What never changes
 
-Employers, titles, dates, education, numbers, and the set of skills. If the posting wants something
-that is not in the master resume, it does not go on the resume. Record it as a missing skill; that
+Employers, titles, dates, education, numbers, Experience and Projects. Skills not in the master go only
+into the Skills section through the per-job rule above. Record it as a missing skill; that
 is what the gap report is for.
 
 ## Resume JSON schema

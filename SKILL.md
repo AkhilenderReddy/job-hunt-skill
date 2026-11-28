@@ -178,8 +178,8 @@ they can be finished without a login.
 For each selected job, follow `references/resume.md`: cut a one-page resume from
 `profile/master_resume.json`, save it as `resumes/<run>/<Name>_<Role>_<Company>.json`, and build the
 PDF with `scripts/build_resume.py`. Tailoring means choosing, ordering and wording true facts so the
-posting's terms are visible. It never means adding a skill, tool, employer, date or number that is
-not in the master resume: an invented claim can cost the user the job at interview or after hiring,
+posting's terms are visible. It never means adding an employer, date, number or experience/project claim that is not in the
+master resume (missing skills go only into the Skills section, per `references/resume.md`): an invented claim can cost the user the job at interview or after hiring,
 which is the opposite of what this skill is for. Skills the job wants and the user lacks go to the
 gap report instead.
 
