@@ -14,10 +14,10 @@ Write `analysis_<n>.json` in this folder: a JSON list, one object per input job,
 - idx
 - min_years: integer minimum years required (lower bound of a range; 0 if fresher or not stated)
 - years_quote: the posting's words on experience, short
-- location_ok: true if based in India, or remote and open to India / worldwide / APAC; false if
-  US/EU/UK/Canada/Middle-East only, needs a clearance or non-Indian citizenship, or needs US working
-  hours / night shifts (6+ hours US overlap)
-- drop_reason: "" if fine, else a short reason. Also drop: closed/expired, email-only application,
+- location_ok: true if based anywhere in India, or remote in any region (US/EU/UK included) with any
+  working hours; onsite outside India only when the posting offers visa sponsorship; false only for
+  roles needing a security clearance or a specific non-Indian citizenship
+- drop_reason: "" if fine, else a short reason. Also drop: closed/expired,
   unpaid, internship, part-time/freelance/trainer, a staffing/recruiter repost hiding the employer,
   or an Indian IT services/outsourcing company or Mahindra group firm (Tech Mahindra, LTIMindtree,
   Mphasis, Hexaware, Persistent, Zensar, Coforge, Birlasoft, Cyient, Sonata, Happiest Minds, Mastek,
@@ -31,3 +31,5 @@ Write `analysis_<n>.json` in this folder: a JSON list, one object per input job,
 Validate that the file parses as JSON with one entry per input job:
 python -c "import json;print(len(json.load(open(r'<path>',encoding='utf-8'))))"
 Reply with just: count written, and the dropped idx with reasons.
+
+- email_apply: the email address if the posting asks for applications by email, else "" (never a drop reason)

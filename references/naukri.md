@@ -7,7 +7,7 @@ applying; searching costs no model time.
 | # | Step | How | Model |
 |---|---|---|---|
 | 1 | Profile refresh, once per day, first browser step of the run | See "Refresh" below. Skip if `state/naukri.json` `last_refresh` is today. | Haiku subagent |
-| 2 | Search | Apify `valig/naukri-jobs-scraper`, one call: `{"keywords": "<roles joined with commas>", "jobAge": "1", "experience": 2, "sort": "f", "jobPostType": ["1"], "limit": 150}`. Save items as `runs/<run>/apify_naukri.json`; `merge_extra.py` merges them. | No model |
+| 2 | Search | Apify `valig/naukri-jobs-scraper`, one call: `{"keywords": "<roles joined with commas>", "jobAge": "1", "experience": <each of config naukri_experience_values: 0, 1, 2 - one call each, merged>, "sort": "f", "jobPostType": ["1"], "limit": 150}`. Save items as `runs/<run>/apify_naukri.json`; `merge_extra.py` merges them. | No model |
 | 3 | Triage, read, score | The normal Stage 2-3 pipeline (never-apply list and category rule apply; duplicates of the same job found on LinkedIn or company boards are dropped) | Scripts + Haiku readers |
 | 4 | Resume | The run's cluster resumes | none extra |
 | 5 | Apply | Naukri's own "Apply" (class A) -> Haiku wave of about 10. "Apply on company site" -> route by form class (`references/apply.md`). | Haiku; class B Sonnet |

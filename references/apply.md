@@ -93,3 +93,11 @@ Cheap pre-check for class A: Firecrawl's Alexandria providers (`greenhouse-io jo
 `ashbyhq-com jobs/job`, `workable jobs/employer_job`) return a posting's application questions
 without opening a browser. When available, list them first and ask the user any question missing
 from `answers.md` before the wave, so Haiku never stops mid-form.
+
+
+## Email-only postings (never drop them)
+
+When a posting says to apply by email: Sonnet writes a short custom email per job (subject with the
+role, 4-6 lines: fit from master-resume facts, availability, links), Haiku opens Gmail in the user's
+Chrome (account in answers.md), creates a DRAFT to the posting's address with the job's tailored PDF
+attached, and saves it. Never press Send: sending is the user's step. List the drafts for the user.
