@@ -56,7 +56,7 @@ Use the cheapest model that does each step safely. Scripts cost nothing; model t
 | Search, triage, score, report (`fetch_boards.py`, `linkedin_details.py`, `jobhunt.py`) | No model: plain scripts | Free and fast |
 | Naukri profile refresh (once a day) and Naukri's own Apply | Subagent with `model: "haiku"` | Fixed routine; new questions stop and come back |
 | YC founder notes (one batch per run) | Subagent with `model: "sonnet"` | Short persuasive text that must stay strictly factual |
-| Stage 3, reading postings | Subagents with `model: "haiku"`, about 20 postings each, in parallel | Simple extraction; the scripts re-check years afterwards |
+| Stage 3, reading postings | Subagents with `model: "haiku"`, about 20-25 postings each, in parallel, briefed by one line pointing at `references/reader-agent.md` | Simple extraction; the scripts re-check years afterwards |
 | Stage 5, tailoring resumes | Sonnet subagent builds; the main session (Opus/Fable) reviews | Must stay truthful; once per cluster per run, from that day's postings |
 | Stage 6, class A forms (LinkedIn Easy Apply, Greenhouse, Lever, Ashby, Workable, SmartRecruiters, Recruitee, Breezy, JazzHR, Teamtailor, Personio, BambooHR) and Google Forms filling | Subagent with `model: "haiku"`, briefed with `references/apply-agent.md` | Standard single guest forms; anything new stops and comes back |
 | Stage 6, class B forms (Phenom, Eightfold, Avature, Oracle, Zoho, PeopleStrong, custom sites) and Haiku's `stuck` jobs | Subagent with `model: "sonnet"` | Multi-step and quirky widgets need fewer mis-clicks |
